@@ -1,0 +1,81 @@
+﻿using System.Threading.Tasks;
+using {namespace}.Models;
+using Microsoft.AspNetCore.Mvc;
+using Nop.Services.Configuration;
+using Nop.Services.Localization;
+using Nop.Services.Messages;
+using Nop.Services.Security;
+using Nop.Web.Areas.Admin.Controllers;
+
+namespace {namespace}.Controller
+{
+
+    public class {PluginName}Controller : BaseAdminController
+    {
+        #region Fields
+
+        private readonly IPermissionService _permissionService;
+        private readonly ISettingService _settingService;
+        private readonly {PluginName}Settings _{PluginNameCamel}Settings;
+        private readonly INotificationService _notificationService;
+        private readonly ILocalizationService _localizationService;
+
+        #endregion
+
+        #region Ctor
+
+        public {PluginName}Controller(IPermissionService permissionService,
+            ISettingService settingService,
+            {PluginName}Settings {PluginNameCamel}Settings,
+            INotificationService notificationService,
+            ILocalizationService localizationService)
+        {
+            _permissionService = permissionService;
+            _settingService = settingService;
+            _{PluginNameCamel}Settings = {PluginNameCamel}Settings;
+            _notificationService = notificationService;
+            _localizationService = localizationService;
+        }
+
+        #endregion
+
+        #region Methods
+
+        public async Task<IActionResult> Configure()
+        {
+            if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManagePlugins))
+                return AccessDeniedView();
+
+            //init configuration model with plugin settings
+            var model = new ConfigurationModel
+            {
+                Example = _{PluginNameCamel}Settings.Example
+            };
+
+            return View("~/Plugins/{SystemName}/Views/Configure.cshtml", model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Configure(ConfigurationModel model)
+        {
+            if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManagePlugins))
+                return AccessDeniedView();
+
+            if (!ModelState.IsValid)
+                return await Configure();
+
+            _{PluginNameCamel}Settings.Example = model.Example;
+
+            //save settings
+            await _settingService.SaveSettingAsync(_{PluginNameCamel}Settings);
+            //now clear settings cache
+            await _settingService.ClearCacheAsync();
+
+            _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("Admin.Plugins.Saved"));
+
+            return await Configure();
+        }
+
+        #endregion        
+    }
+}

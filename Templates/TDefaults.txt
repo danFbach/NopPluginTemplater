@@ -1,0 +1,22 @@
+﻿using System.Collections.Generic;
+
+namespace {namespace}
+{
+    public class {PluginName}Defaults
+    {
+        /// <summary>
+        /// Gets the system name
+        /// </summary>
+        public static string SystemName => "{SystemName}";
+
+        /// <summary>
+        /// Gets the configuration route name
+        /// </summary>
+        public static string ConfigurationRouteName => "{namespace}.Configure";
+
+        public static readonly Dictionary<string, string> Resources = new()
+        {
+            { "{namespace}.Example", "Example" }
+        };
+    }
+}

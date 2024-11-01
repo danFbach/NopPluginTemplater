@@ -1,0 +1,210 @@
+
+        /// <summary>
+        /// Process a payment
+        /// </summary>
+        /// <param name="processPaymentRequest">Payment info required for an order processing</param>
+        /// <returns>
+        /// A task that represents the asynchronous operation
+        /// The task result contains the process payment result
+        /// </returns>
+        public Task<ProcessPaymentResult> ProcessPaymentAsync(ProcessPaymentRequest processPaymentRequest)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Post process payment (used by payment gateways that require redirecting to a third-party URL)
+        /// </summary>
+        /// <param name="postProcessPaymentRequest">Payment info required for an order processing</param>
+        /// <returns>A task that represents the asynchronous operation</returns>
+        public Task PostProcessPaymentAsync(PostProcessPaymentRequest postProcessPaymentRequest)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Returns a value indicating whether payment method should be hidden during checkout
+        /// </summary>
+        /// <param name="cart">Shopping cart</param>
+        /// <returns>
+        /// A task that represents the asynchronous operation
+        /// The task result contains the rue - hide; false - display.
+        /// </returns>
+        public Task<bool> HidePaymentMethodAsync(IList<ShoppingCartItem> cart)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Gets additional handling fee
+        /// </summary>
+        /// <param name="cart">Shopping cart</param>
+        /// <returns>
+        /// A task that represents the asynchronous operation
+        /// The task result contains the additional handling fee
+        /// </returns>
+        public Task<decimal> GetAdditionalHandlingFeeAsync(IList<ShoppingCartItem> cart)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Captures payment
+        /// </summary>
+        /// <param name="capturePaymentRequest">Capture payment request</param>
+        /// <returns>
+        /// A task that represents the asynchronous operation
+        /// The task result contains the capture payment result
+        /// </returns>
+        public Task<CapturePaymentResult> CaptureAsync(CapturePaymentRequest capturePaymentRequest)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Refunds a payment
+        /// </summary>
+        /// <param name="refundPaymentRequest">Request</param>
+        /// <returns>
+        /// A task that represents the asynchronous operation
+        /// The task result contains the result
+        /// </returns>
+        public Task<RefundPaymentResult> RefundAsync(RefundPaymentRequest refundPaymentRequest)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Voids a payment
+        /// </summary>
+        /// <param name="voidPaymentRequest">Request</param>
+        /// <returns>
+        /// A task that represents the asynchronous operation
+        /// The task result contains the result
+        /// </returns>
+        public Task<VoidPaymentResult> VoidAsync(VoidPaymentRequest voidPaymentRequest)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Process recurring payment
+        /// </summary>
+        /// <param name="processPaymentRequest">Payment info required for an order processing</param>
+        /// <returns>
+        /// A task that represents the asynchronous operation
+        /// The task result contains the process payment result
+        /// </returns>
+        public Task<ProcessPaymentResult> ProcessRecurringPaymentAsync(ProcessPaymentRequest processPaymentRequest)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Cancels a recurring payment
+        /// </summary>
+        /// <param name="cancelPaymentRequest">Request</param>
+        /// <returns>
+        /// A task that represents the asynchronous operation
+        /// The task result contains the result
+        /// </returns>
+        public Task<CancelRecurringPaymentResult> CancelRecurringPaymentAsync(CancelRecurringPaymentRequest cancelPaymentRequest)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether customers can complete a payment after order is placed but not completed (for redirection payment methods)
+        /// </summary>
+        /// <param name="order">Order</param>
+        /// <returns>
+        /// A task that represents the asynchronous operation
+        /// The task result contains the result
+        /// </returns>
+        public Task<bool> CanRePostProcessPaymentAsync(Order order)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Validate payment form
+        /// </summary>
+        /// <param name="form">The parsed form values</param>
+        /// <returns>
+        /// A task that represents the asynchronous operation
+        /// The task result contains the list of validating errors
+        /// </returns>
+        public Task<IList<string>> ValidatePaymentFormAsync(IFormCollection form)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Get payment information
+        /// </summary>
+        /// <param name="form">The parsed form values</param>
+        /// <returns>
+        /// A task that represents the asynchronous operation
+        /// The task result contains the payment info holder
+        /// </returns>
+        public Task<ProcessPaymentRequest> GetPaymentInfoAsync(IFormCollection form)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Gets a type of a view component for displaying plugin in public store ("payment info" checkout step)
+        /// </summary>
+        /// <returns>View component type</returns>
+        public Type GetPublicViewComponent()
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Gets a payment method description that will be displayed on checkout pages in the public store
+        /// </summary>
+        /// <returns>A task that represents the asynchronous operation</returns>
+        public Task<string> GetPaymentMethodDescriptionAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        #region Properties
+
+        /// <summary>
+        /// Gets a value indicating whether capture is supported
+        /// </summary>
+        public bool SupportCapture => throw new NotImplementedException();
+
+        /// <summary>
+        /// Gets a value indicating whether partial refund is supported
+        /// </summary>
+        public bool SupportPartiallyRefund => throw new NotImplementedException();
+
+        /// <summary>
+        /// Gets a value indicating whether refund is supported
+        /// </summary>
+        public bool SupportRefund => throw new NotImplementedException();
+
+        /// <summary>
+        /// Gets a value indicating whether void is supported
+        /// </summary>
+        public bool SupportVoid => throw new NotImplementedException();
+
+        /// <summary>
+        /// Gets a recurring payment type of payment method
+        /// </summary>
+        public RecurringPaymentType RecurringPaymentType => throw new NotImplementedException();
+
+        /// <summary>
+        /// Gets a payment method type
+        /// </summary>
+        public PaymentMethodType PaymentMethodType => throw new NotImplementedException();
+
+        /// <summary>
+        /// Gets a value indicating whether we should display a payment information page for this plugin
+        /// </summary>
+        public bool SkipPaymentInfo => throw new NotImplementedException();
+
+        #endregion

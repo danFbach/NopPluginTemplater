@@ -1,0 +1,9 @@
+using Nop.Core.Configuration;
+
+namespace {namespace}
+{
+    public class {PluginName}Settings : ISettings
+    {
+        public string Example { get; set; }
+    }
+}

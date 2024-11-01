@@ -1,0 +1,8 @@
+        /// <summary>
+        /// Gets a type of a view component for displaying plugin in public store
+        /// </summary>
+        /// <returns>View component type</returns>
+        public Type GetPublicViewComponent()
+        {
+            throw new NotImplementedException();
+        }

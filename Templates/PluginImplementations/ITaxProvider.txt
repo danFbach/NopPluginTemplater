@@ -1,0 +1,25 @@
+        /// <summary>
+        /// Gets tax rate
+        /// </summary>
+        /// <param name="taxRateRequest">Tax rate request</param>
+        /// <returns>
+        /// A task that represents the asynchronous operation
+        /// The task result contains the ax
+        /// </returns>
+        public Task<TaxRateResult> GetTaxRateAsync(TaxRateRequest taxRateRequest)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Gets tax total
+        /// </summary>
+        /// <param name="taxTotalRequest">Tax total request</param>
+        /// <returns>
+        /// A task that represents the asynchronous operation
+        /// The task result contains the ax total
+        /// </returns>
+        public Task<TaxTotalResult> GetTaxTotalAsync(TaxTotalRequest taxTotalRequest)
+        {
+            throw new NotImplementedException();
+        }

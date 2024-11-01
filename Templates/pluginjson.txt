@@ -1,0 +1,11 @@
+{
+  "Group": "{PluginGroup}",
+  "FriendlyName": "undefined",
+  "SystemName": "{SystemName}",
+  "Version": "0.01",
+  "SupportedVersions": [ "4.60" ],
+  "Author": "undefined",
+  "DisplayOrder": 1,
+  "FileName": "{namespace}.dll",
+  "Description": "undefined"
+}
