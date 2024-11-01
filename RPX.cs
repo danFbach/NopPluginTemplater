@@ -20,6 +20,16 @@ public static class RPX
             templateContents = templateContents.Replace("{PluginImplementation}", implementation);
         }
 
+        if(PluginSettings.ContainsWidget &&
+            templateContents.Contains("{WidgetImplementation}"))
+        {
+            var implementation = await File.ReadAllTextAsync($"./Templates/PluginImplementations/IWidgetPlugin.txt");
+
+            implementation = await BulkReplaceAsync(implementation);
+
+            templateContents = templateContents.Replace("{WidgetImplementation}", implementation);
+        }
+
         return templateContents;
     }
 }

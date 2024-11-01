@@ -28,12 +28,15 @@ public static class PluginSettings
             {
                 additionalUsings.Add("Nop.Services.Cms");
                 additionalUsings.Add("Nop.Web.Framework.Infrastructure");
+                additionalUsings.Add($"{FullPluginNamespace}.Components");
             }
 
             if (IsAdminMenu)
                 additionalUsings.Add("Nop.Web.Framework.Menu");
 
             additionalUsings.AddRange(TypeSpecificUsing);
+
+            additionalUsings = additionalUsings.Distinct().ToList();
 
             return string.Join(Environment.NewLine, additionalUsings.Select(x => $"using {x};"));
         }
@@ -49,7 +52,7 @@ public static class PluginSettings
                 PluginType.ExternalAuthenticationMethod => ["Nop.Services.Authentication.External"],
                 PluginType.Misc => ["Nop.Services.Common"],
                 PluginType.MultiFactorAuthentication => ["Nop.Services.Authentication.MultiFactor"],
-                PluginType.Payment => ["Nop.Services.Payments", "Nop.Core.Domain.Orders","Microsoft.AspNetCore.Http"],
+                PluginType.Payment => ["Nop.Services.Payments", "Nop.Core.Domain.Orders", "Microsoft.AspNetCore.Http", $"{FullPluginNamespace}.Components"],
                 PluginType.PickupProvider => ["Nop.Services.Shipping.Pickup"],
                 PluginType.ShippingRateComputationMethod => ["Nop.Services.Shipping"],
                 PluginType.TaxProvider => ["Nop.Services.Tax"],

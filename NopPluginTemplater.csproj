@@ -8,6 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Update="Templates\Components\PaymentInfoViewComponent.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Templates\Components\TWidgetViewComponent.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Templates\Controllers\TController.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -18,6 +24,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Templates\Models\ConfigurationModel.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Templates\Models\PaymentInfoModel.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Templates\Models\TWidgetViewModel.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Templates\PluginImplementations\IDiscountRequirementRule.txt">
@@ -44,6 +56,9 @@
     <None Update="Templates\PluginImplementations\ITaxProvider.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Templates\PluginImplementations\IWidgetPlugin.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Templates\pluginjson.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -62,12 +77,22 @@
     <None Update="Templates\TSettings.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Templates\Views\Components\PaymentInfo.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Templates\Views\Components\TWidget.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Templates\Views\Configure.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Templates\Views\_ViewImports.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Templates\Views\Components\" />
   </ItemGroup>
 
 </Project>

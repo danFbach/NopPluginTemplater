@@ -41,6 +41,8 @@ namespace {namespace}
 
 		#endregion
 
+{WidgetImplementation}
+
 		#region Methods
 		
 {PluginImplementation}

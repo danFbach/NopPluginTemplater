@@ -157,8 +157,8 @@
         /// </summary>
         /// <returns>View component type</returns>
         public Type GetPublicViewComponent()
-        {
-            throw new NotImplementedException();
+        {            
+            return typeof(PaymentInfoViewComponent);
         }
 
         /// <summary>

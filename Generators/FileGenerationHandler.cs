@@ -6,6 +6,25 @@ public static class FileGenerationHandler
     public static async Task RunAsync()
     {
         await GenerateRequiredFilesAsync();
+
+        if (PluginSettings.ContainsWidget)
+        {
+            await new Generate("Components", "TWidgetViewComponent").CodeAsync();
+
+            await new Generate("Models", "TWidgetViewModel").CodeAsync();
+
+            await new Generate("Views/Components", "TWidget").CodeAsync(".cshtml");
+        }
+
+        if (PluginSettings.PType == PluginType.Payment)
+        {
+            await new Generate("Components", "PaymentInfoViewComponent").CodeAsync();
+
+            await new Generate("Models", "PaymentInfoModel").CodeAsync();
+
+            await new Generate("Views/Components", "PaymentInfo").CodeAsync(".cshtml");            
+        }
+
     }
 
     private static async Task GenerateRequiredFilesAsync()

@@ -1,0 +1,22 @@
+using System.Threading.Tasks;
+using {namespace}.Models;
+using Microsoft.AspNetCore.Mvc;
+using Nop.Web.Framework.Components;
+
+namespace {namespace}.Components
+{
+    public class {PluginName}WidgetViewComponent : NopViewComponent
+    {
+
+        public {PluginName}WidgetViewComponent()
+        {
+        }
+
+        public async Task<IViewComponentResult> InvokeAsync(string widgetZone, object additionalData)
+        {
+            var viewModel = new {PluginName}WidgetViewModel();
+
+            return View("/Plugins/{System.Name}/Views/Components/{PluginName}Widget.cshtml", viewModel);
+        }
+    }
+}

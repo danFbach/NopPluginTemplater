@@ -1,0 +1,22 @@
+using System.Threading.Tasks;
+using {namespace}.Models;
+using Microsoft.AspNetCore.Mvc;
+using Nop.Web.Framework.Components;
+
+namespace {namespace}.Components
+{
+    public class PaymentInfoViewComponent : NopViewComponent
+    {
+
+        public PaymentInfoViewComponent()
+        {
+        }
+
+        public async Task<IViewComponentResult> InvokeAsync(string widgetZone, object additionalData)
+        {
+            var viewModel = new PaymentInfoModel();
+
+            return View("/Plugins/{System.Name}/Views/Components/PaymentInfo.cshtml", viewModel);
+        }
+    }
+}
