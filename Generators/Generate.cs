@@ -24,6 +24,9 @@ public class Generate(string path, string filename)
         if (!extension.StartsWith('.'))
             extension = $".{extension}";
 
+        if (extension == ".cshtml")
+            PluginSettings.AdditionalProjectFiles.Add(OutputFile.Replace($"./{PluginSettings.FullPluginNamespace}/", string.Empty).Replace('/', '\\') + extension);
+
         await File.WriteAllTextAsync($"{OutputFile}{extension}", templateText);
     }
 

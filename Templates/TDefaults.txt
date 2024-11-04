@@ -16,7 +16,7 @@ namespace {namespace}
 
         public static readonly Dictionary<string, string> Resources = new()
         {
-            { "{namespace}.Example", "Example" }
+            ["{namespace}.Example"] = "Example",
         };
     }
 }

@@ -16,7 +16,7 @@ namespace {namespace}.Components
         {
             var viewModel = new {PluginName}WidgetViewModel();
 
-            return View("/Plugins/{System.Name}/Views/Components/{PluginName}Widget.cshtml", viewModel);
+            return View("/Plugins/{SystemName}/Views/Components/{PluginName}Widget.cshtml", viewModel);
         }
     }
 }

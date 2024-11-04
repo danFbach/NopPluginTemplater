@@ -1,0 +1,7 @@
+namespace {namespace}.Models
+{
+    public class ExternalAuthenticationModel
+    {
+
+    }
+}

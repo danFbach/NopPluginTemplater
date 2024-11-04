@@ -5,18 +5,18 @@ using Nop.Web.Framework.Components;
 
 namespace {namespace}.Components
 {
-    public class PaymentInfoViewComponent : NopViewComponent
+    public class ExternalAuthenticationViewComponent : NopViewComponent
     {
 
-        public PaymentInfoViewComponent()
+        public ExternalAuthenticationViewComponent()
         {
         }
 
         public async Task<IViewComponentResult> InvokeAsync(string widgetZone, object additionalData)
         {
-            var viewModel = new PaymentInfoModel();
+            var viewModel = new ExternalAuthenticationModel();
 
-            return View("/Plugins/{SystemName}/Views/Components/PaymentInfo.cshtml", viewModel);
+            return View("/Plugins/{SystemName}/Views/Components/ExternalAuthenticationModel.cshtml", viewModel);
         }
     }
 }

@@ -1,0 +1,24 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace {namespace}.Services
+{
+    public class {PluginName}PaymentService
+    {
+
+        public {PluginName}PaymentService()
+        {
+
+        }
+
+
+        #region Methods
+
+        
+
+        #endregion
+    }
+}

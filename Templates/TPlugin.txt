@@ -21,7 +21,7 @@ namespace {namespace}
         private readonly ILocalizationService _localizationService;
         private readonly IUrlHelperFactory _urlHelperFactory;
         private readonly IActionContextAccessor _actionContextAccessor;
-
+        {PluginFields}
 		#endregion
 
 		#region Ctor
@@ -30,19 +30,18 @@ namespace {namespace}
             ISettingService settingService,
             ILocalizationService localizationService,
             IUrlHelperFactory urlHelperFactory,
-            IActionContextAccessor actionContextAccessor)
+            IActionContextAccessor actionContextAccessor{PluginServiceDI})
 		{
 			_{PluginNameCamel}Settings = {PluginNameCamel}Settings;
             _settingService = settingService;
             _localizationService = localizationService;
             _urlHelperFactory = urlHelperFactory;
             _actionContextAccessor = actionContextAccessor;
+            {PluginServiceRegistation}
 		}
 
 		#endregion
-
 {WidgetImplementation}
-
 		#region Methods
 		
 {PluginImplementation}

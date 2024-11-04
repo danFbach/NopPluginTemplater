@@ -1,7 +1,7 @@
         /// <summary>
         ///  Gets a multi-factor authentication type
         /// </summary>
-        public MultiFactorAuthenticationType Type { get; }
+        public MultiFactorAuthenticationType Type => throw new NotImplementedException();
 
         /// <summary>
         /// Gets a type of a view component for displaying plugin in public store
@@ -9,7 +9,7 @@
         /// <returns>View component type</returns>
         public Type GetPublicViewComponent()
         {
-            throw new NotImplementedException();
+            return typeof(MultiFactorPublicViewComponent);
         }
 
         /// <summary>
@@ -18,7 +18,7 @@
         /// <returns>View component type</returns>
         public Type GetVerificationViewComponent()
         {
-            throw new NotImplementedException();
+            return typeof(MultiFactorVerificationViewComponent);
         }
 
         /// <summary>
@@ -27,5 +27,5 @@
         /// <returns>A task that represents the asynchronous operation</returns>
         public Task<string> GetDescriptionAsync()
         {
-            throw new NotImplementedException();
+            return Task.FromResult(string.Empty);
         }
