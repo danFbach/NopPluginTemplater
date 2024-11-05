@@ -11,7 +11,7 @@ public class Generate(string path, string filename)
     private string OutputPath => !string.IsNullOrEmpty(Path) ? $"./{PluginSettings.FullPluginNamespace}/{Path}" : $"./{PluginSettings.FullPluginNamespace}";
     private string OutputFile => $"{OutputPath}/{(InputFile.StartsWith('T') ? $"{PluginSettings.Name}{InputFile[1..]}" : InputFile)}";
 
-    public async Task CodeAsync(string extension = ".cs")
+    public async Task BuildGenericFileAsync(string extension = ".cs")
     {
         if (!File.Exists(InputFilePath))
             return;
@@ -30,7 +30,7 @@ public class Generate(string path, string filename)
         await File.WriteAllTextAsync($"{OutputFile}{extension}", templateText);
     }
 
-    public async Task ProjectFileAsync()
+    public async Task BuildProjectFileAsync()
     {
         if (!File.Exists(InputFilePath))
             return;
@@ -43,7 +43,7 @@ public class Generate(string path, string filename)
         await File.WriteAllTextAsync($"{OutputPath}/{PluginSettings.FullPluginNamespace}.csproj", templateText);
     }
 
-    public async Task PluginJsonAsync()
+    public async Task BuildPluginJsonAsync()
     {
         if (!File.Exists(InputFilePath))
             return;

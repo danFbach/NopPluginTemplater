@@ -1,4 +1,6 @@
-﻿namespace NopPluginTemplater;
+﻿using NopPluginTemplater.Generators;
+
+namespace NopPluginTemplater;
 
 public static class PluginSettings
 {
@@ -196,6 +198,56 @@ public static class PluginSettings
                 NopVersions.nop490 => "4.90",
                 _ => string.Empty
             };
+        }
+    }
+
+    public static async Task BuildViewComponentsAsync()
+    {
+        if (ContainsWidget)
+        {
+            await new Generate("Components", "TWidgetViewComponent").BuildGenericFileAsync();
+
+            await new Generate("Models", "TWidgetViewModel").BuildGenericFileAsync();
+
+            await new Generate("Views/Components", "TWidget").BuildGenericFileAsync(".cshtml");
+        }
+
+        if (PType == PluginType.Payment)
+        {
+            await new Generate("Components", "PaymentInfoViewComponent").BuildGenericFileAsync();
+
+            await new Generate("Models", "PaymentInfoModel").BuildGenericFileAsync();
+
+            await new Generate("Views/Components", "PaymentInfo").BuildGenericFileAsync(".cshtml");
+
+            await new Generate("Services", "TPaymentService").BuildGenericFileAsync();
+        }
+        else if (PType == PluginType.ExternalAuthenticationMethod)
+        {
+            await new Generate("Components", "ExternalAuthenticationViewComponent").BuildGenericFileAsync();
+
+            await new Generate("Models", "ExternalAuthenticationModel").BuildGenericFileAsync();
+
+            await new Generate("Views/Components", "ExternalAuthentication").BuildGenericFileAsync(".cshtml");
+        }
+        else if (PType == PluginType.MultiFactorAuthentication)
+        {
+            await new Generate("Components", "MultiFactorPublicViewComponent").BuildGenericFileAsync();
+
+            await new Generate("Models", "MultiFactorPublicModel").BuildGenericFileAsync();
+
+            await new Generate("Views/Components", "MultiFactorPublic").BuildGenericFileAsync(".cshtml");
+
+
+            await new Generate("Components", "MultiFactorVerificationViewComponent").BuildGenericFileAsync();
+
+            await new Generate("Models", "MultiFactorVerificationModel").BuildGenericFileAsync();
+
+            await new Generate("Views/Components", "MultiFactorVerification").BuildGenericFileAsync(".cshtml");
+        }
+        else if (PType == PluginType.DiscountRule)
+        {
+            await new Generate("Services", "TDiscountService").BuildGenericFileAsync();
         }
     }
 }
