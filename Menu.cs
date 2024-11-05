@@ -1,4 +1,6 @@
-﻿namespace NopPluginTemplater;
+﻿using Microsoft.VisualBasic;
+
+namespace NopPluginTemplater;
 
 public class Menu
 {
@@ -18,6 +20,13 @@ public class Menu
 
         Console.WriteLine();
         Console.WriteLine();
+
+        Console.Write("What version of nop are you targeting?");
+        Console.WriteLine();
+        foreach (var val in Enum.GetValues<NopVersions>())
+            Console.WriteLine($"{(int)val}) {NopRawVersion(val)}");
+
+        PluginSettings.NopVersion = GetNopVersion();
 
         Console.Write("What type of plugin do want to make?");
         Console.WriteLine();
@@ -67,6 +76,19 @@ public class Menu
         };
     }
 
+    public static string NopRawVersion(NopVersions nopVersion)
+    {
+        return nopVersion switch
+        {
+            NopVersions.nop450 => "4.50",
+            NopVersions.nop460 => "4.60",
+            NopVersions.nop470 => "4.70",
+            NopVersions.nop480 => "4.80",
+            NopVersions.nop490 => "4.90",
+            _ => string.Empty
+        };
+    }
+
     private static PluginType GetPluginType()
     {
         var enumVals = Enum.GetValues<PluginType>();
@@ -78,6 +100,19 @@ public class Menu
         }
 
         return GetPluginType();
+    }
+
+    private static NopVersions GetNopVersion()
+    {
+        var enumVals = Enum.GetValues<NopVersions>();
+        var key = Console.ReadKey();
+        if (int.TryParse(key.KeyChar.ToString(), out var keyInt) &&
+            keyInt < enumVals.Length)
+        {
+            return (NopVersions)keyInt;
+        }
+
+        return GetNopVersion();
     }
 
     private static bool YesOrNo()

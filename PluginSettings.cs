@@ -10,6 +10,8 @@ public static class PluginSettings
 
     public static PluginType PType { get; set; }
 
+    public static NopVersions NopVersion { get; set; }
+
     public static bool IsAdminMenu { get; set; } = false;
 
     public static bool ContainsWidget { get; set; } = false;
@@ -163,6 +165,48 @@ public static class PluginSettings
             };
         }
     }
+
+    public static string DotNetVersion
+    {
+        get
+        {
+            return NopVersion switch
+            {
+                NopVersions.nop450 => "net6.0",
+                NopVersions.nop460 => "net7.0",
+                NopVersions.nop470 => "net8.0",
+                NopVersions.nop480 => "net9.0",
+                NopVersions.nop490 => string.Empty, //todo: update on nop 4.9 release
+                _ => string.Empty
+            };
+        }
+    }
+
+    public static string NopRawVersion
+    {
+        get
+        {
+
+            return NopVersion switch
+            {
+                NopVersions.nop450 => "4.50",
+                NopVersions.nop460 => "4.60",
+                NopVersions.nop470 => "4.70",
+                NopVersions.nop480 => "4.80",
+                NopVersions.nop490 => "4.90",
+                _ => string.Empty
+            };
+        }
+    }
+}
+
+public enum NopVersions
+{
+    nop450,
+    nop460,
+    nop470,
+    nop480,
+    nop490,
 }
 
 public enum PluginType

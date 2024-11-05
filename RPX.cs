@@ -23,6 +23,8 @@ public static class RPX
         { "{PluginNameCamel}", (PluginSettings.NameCamel, GenericReplace) },
         { "{PluginUsings}", (PluginSettings.Usings, GenericReplace) },
         { "{PluginGroup}", (PluginSettings.Group, GenericReplace) },
+        { "{NopRawVersion}", (PluginSettings.NopRawVersion, GenericReplace) },
+        { "{DotNetVersion}", (PluginSettings.DotNetVersion, GenericReplace) },
         { "{AdditionalProjectFiles}", (string.Empty, AdditionalProjectFiles) },
         { "{ConfigurePluginService}", (string.Empty, ConfigureServices) },
         { "{WidgetImplementation}", (string.Empty, WidgetImplementation) },

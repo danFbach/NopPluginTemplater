@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>{DotNetVersion}</TargetFramework>
     <OutputPath>..\..\Presentation\Nop.Web\Plugins\{SystemName}</OutputPath>
     <OutDir>$(OutputPath)</OutDir>
     <Authors></Authors>
