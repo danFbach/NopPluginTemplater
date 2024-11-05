@@ -19,15 +19,15 @@ public static class Menu
 
     private static void SetDevName()
     {
-        Console.Write("Enter your hacker handle: ");
+        Console.Write("Enter your developer name: ");
 
-        var hackerName = Console.ReadLine();
+        var devName = Console.ReadLine();
 
-        if (string.IsNullOrWhiteSpace(hackerName))
-            throw new Exception("You can't be a nameless hacker.");
+        if (string.IsNullOrWhiteSpace(devName))
+            throw new Exception("You can't be a nameless developer.");
 
-        //TODO validation for namespace requirements
-        PluginSettings.HackerName = hackerName;
+        //TODO: validation for namespace req's
+        PluginSettings.DevName = devName;
 
         Console.WriteLine();
         Console.WriteLine();
@@ -132,6 +132,7 @@ public static class Menu
         Console.Write("Name your plugin: ");
         var pluginName = Console.ReadLine();
 
+        //TODO: validation for namespace req's
         if (string.IsNullOrEmpty(pluginName))
             throw new Exception("Plugin must be named.");
 

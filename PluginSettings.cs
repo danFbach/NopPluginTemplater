@@ -4,7 +4,7 @@ namespace NopPluginTemplater;
 
 public static class PluginSettings
 {
-    public static string HackerName { get; set; } = string.Empty;
+    public static string DevName { get; set; } = string.Empty;
 
     public static string Name { get; set; } = string.Empty;
 
@@ -18,7 +18,7 @@ public static class PluginSettings
 
     public static bool ContainsWidget { get; set; } = false;
 
-    public static string FullPluginNamespace => $"{HackerName}.Plugin.{Group}.{Name}";
+    public static string FullPluginNamespace => $"{DevName}.Plugin.{Group}.{Name}";
 
     public static string Interfaces => Interface + (ContainsWidget ? ", IWidgetPlugin" : string.Empty) + (IsAdminMenu ? ", IAdminMenuPlugin" : string.Empty);
 
