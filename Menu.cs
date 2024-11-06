@@ -1,6 +1,8 @@
-﻿namespace NopPluginTemplater;
+﻿using System.Text.RegularExpressions;
 
-public static class Menu
+namespace NopPluginTemplater;
+
+public static partial class Menu
 {
     public static void MakeSelections()
     {
@@ -24,13 +26,50 @@ public static class Menu
         var devName = Console.ReadLine();
 
         if (string.IsNullOrWhiteSpace(devName))
-            throw new Exception("You can't be a nameless developer.");
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("You can't be a nameless developer.");
+            Console.ForegroundColor = ConsoleColor.White;
+            SetDevName();
+        }
+        else if (devName.EqualsReservedWords(out var matchedWords))
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($"Your dev name equals reserved word(s) {matchedWords}.");
+            Console.WriteLine("This will cause problems and must be changed.");
+            Console.ForegroundColor = ConsoleColor.White;
+            SetDevName();
+        }
+        else if (!NamespaceRegex().IsMatch(devName))
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("Your name contains Illegal characters or formatting for a namespace.");
+            Console.WriteLine("This is will likely cause errors and/or warnings.");
+            Console.WriteLine("Would you like to change your name? (y/n)");
+            Console.ForegroundColor = ConsoleColor.White; 
 
-        //TODO: validation for namespace req's
-        PluginSettings.DevName = devName;
+            if (YesOrNo())
+                SetDevName();
+            else
+                PluginSettings.DevName = devName;
+        }
+        else if (devName.ContainsReservedWords(out matchedWords))
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"Your dev name contains reserved word(s) {matchedWords}.");
+            Console.WriteLine("This is will likely cause errors and/or warnings.");
+            Console.WriteLine("Would you like to change your name? (y/n)");
+            Console.ForegroundColor = ConsoleColor.White;
 
-        Console.WriteLine();
-        Console.WriteLine();
+            if (YesOrNo())
+                SetDevName();
+            else
+                PluginSettings.DevName = devName;
+        }
+        else
+        {
+            PluginSettings.DevName = devName;
+        }
     }
 
     private static void SetNopVersion()
@@ -41,11 +80,14 @@ public static class Menu
             Console.WriteLine($"{(int)val}) {nopRawVersion(val)}");
 
         PluginSettings.NopVersion = getNopVersion();
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine($"nop {nopRawVersion(PluginSettings.NopVersion)} selected.");
+        Console.ForegroundColor = ConsoleColor.White;
 
         static NopVersions getNopVersion()
         {
             var enumVals = Enum.GetValues<NopVersions>();
-            var key = Console.ReadKey();
+            var key = Console.ReadKey(true);
             if (int.TryParse(key.KeyChar.ToString(), out var keyInt) &&
                 keyInt < enumVals.Length)
             {
@@ -76,11 +118,14 @@ public static class Menu
             Console.WriteLine($"{(int)val}) {pluginHumanReadable(val)}");
 
         PluginSettings.PType = getPluginType();
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine($"{pluginHumanReadable(PluginSettings.PType)} selected.");
+        Console.ForegroundColor = ConsoleColor.White;
 
         static PluginType getPluginType()
         {
             var enumVals = Enum.GetValues<PluginType>();
-            var key = Console.ReadKey();
+            var key = Console.ReadKey(true);
             if (int.TryParse(key.KeyChar.ToString(), out var keyInt) &&
                 keyInt < enumVals.Length)
             {
@@ -132,11 +177,51 @@ public static class Menu
         Console.Write("Name your plugin: ");
         var pluginName = Console.ReadLine();
 
-        //TODO: validation for namespace req's
         if (string.IsNullOrEmpty(pluginName))
-            throw new Exception("Plugin must be named.");
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Plugin must be named.");
+            Console.ForegroundColor = ConsoleColor.White;
+            SetPluginName();
+        }
+        else if (pluginName.EqualsReservedWords(out var matchedWords))
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($"Your plugin name equals reserved word(s) {matchedWords}.");
+            Console.WriteLine("This will cause problems and must be changed.");
+            Console.ForegroundColor = ConsoleColor.White;
+            SetPluginName();
+        }
+        else if (!NamespaceRegex().IsMatch(pluginName))
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("Your plugin name contains Illegal characters or formatting for a namespace.");
+            Console.WriteLine("This is will likely cause errors and/or warnings.");
+            Console.WriteLine("Would you like to change the plugin name? (y/n)");
+            Console.ForegroundColor = ConsoleColor.White;
 
-        PluginSettings.Name = pluginName;
+            if (YesOrNo())
+                SetPluginName();
+            else
+                PluginSettings.Name = pluginName;
+        }
+        else if (pluginName.ContainsReservedWords(out matchedWords))
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"Your pluing name contains reserved word(s) {matchedWords}.");
+            Console.WriteLine("This is will likely cause errors and/or warnings.");
+            Console.WriteLine("Would you like to change the plugin name? (y/n)");
+            Console.ForegroundColor = ConsoleColor.White;
+
+            if (YesOrNo())
+                SetPluginName();
+            else
+                PluginSettings.Name = pluginName;
+        }
+        else
+        {
+            PluginSettings.Name = pluginName;
+        }
     }
 
     private static bool YesOrNo()
@@ -157,5 +242,34 @@ public static class Menu
         }
 
         return result.Value;
+    }
+
+    [GeneratedRegex("(?:[A-Z][a-zA-Z0-9_]+)+[a-z0-9_]")]
+    private static partial Regex NamespaceRegex();
+
+    private static readonly string[] ReservedWords = ["abstract", "as", "base", "bool", "break", "byte", "case", "catch", "char", "checked", "class", "const", "continue", "decimal", "default", "delegate", "do", "double", "else", "enum", "event", "explicit", "extern", "false", "finally", "fixed", "float", "for", "foreach", "goto", "if", "implicit", "in", "int", "interface", "internal", "is", "lock", "long", "namespace", "new", "null", "object", "operator", "out", "override", "params", "private", "protected", "public", "readonly", "ref", "return", "sbyte", "sealed", "short", "sizeof", "stackalloc", "static", "string", "struct", "switch", "this", "throw", "true", "try", "typeof", "uint", "ulong", "unchecked", "unsafe", "ushort", "using", "virtual", "void", "volatile", "while"];
+
+    private static bool ContainsReservedWords(this string checkString, out string match)
+    {
+        match = string.Empty;
+        if (!ReservedWords.Any(checkString.Contains))
+        {
+            match = string.Join(", ", ReservedWords.Where(x => checkString.Contains(x, StringComparison.InvariantCultureIgnoreCase)));
+            return false;
+        }
+
+        return true;
+    }
+
+    private static bool EqualsReservedWords(this string checkString, out string match)
+    {
+        match = string.Empty;
+        if (ReservedWords.Any(x => x.Equals(checkString, StringComparison.CurrentCultureIgnoreCase)))
+        {
+            match = string.Join(", ", ReservedWords.Where(x => x.Equals(checkString, StringComparison.InvariantCultureIgnoreCase)));
+            return true;
+        }
+
+        return false;
     }
 }
