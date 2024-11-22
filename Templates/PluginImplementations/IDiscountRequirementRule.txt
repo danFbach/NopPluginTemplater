@@ -8,7 +8,11 @@
         /// </returns>
         public Task<DiscountRequirementValidationResult> CheckRequirementAsync(DiscountRequirementValidationRequest request)
         {
-            throw new NotImplementedException();
+            var result = new DiscountRequirementValidationResult();
+            
+            //requirement logic here
+
+            return result;
         }
 
         /// <summary>
@@ -18,6 +22,6 @@
         /// <param name="discountRequirementId">Discount requirement identifier (if editing)</param>
         /// <returns>URL</returns>
         public string GetConfigurationUrl(int discountId, int? discountRequirementId)
-        {
-            throw new NotImplementedException();
+        {            
+            return $"/Admin/{PluginName}/Configure?discountId={discountId}&discountRequirementId={discountRequirementId}";
         }

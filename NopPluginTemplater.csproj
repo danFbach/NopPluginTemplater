@@ -23,6 +23,9 @@
     <None Update="Templates\Components\TWidgetViewComponent.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Templates\Controllers\TDiscountController.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Templates\Controllers\TController.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

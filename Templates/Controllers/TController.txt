@@ -5,12 +5,12 @@ using Nop.Services.Configuration;
 using Nop.Services.Localization;
 using Nop.Services.Messages;
 using Nop.Services.Security;
-using Nop.Web.Areas.Admin.Controllers;
+using Nop.Web.Framework.Controllers;
 
 namespace {namespace}.Controller
 {
 
-    public class {PluginName}Controller : BaseAdminController
+    public class {PluginName}Controller : BasePluginController
     {
         #region Fields
 

@@ -18,11 +18,11 @@ public static class PluginSettings
 
     public static bool ContainsWidget { get; set; } = false;
 
-    public static string FullPluginNamespace => $"{DevName}.Plugin.{Group}.{Name}";
+    public static string FullPluginNamespace => $"{DevName}.Plugin.{NamespaceGroup}.{Name}";
 
     public static string Interfaces => Interface + (ContainsWidget ? ", IWidgetPlugin" : string.Empty) + (IsAdminMenu ? ", IAdminMenuPlugin" : string.Empty);
 
-    public static string SystemName => $"{Group}.{Name}";
+    public static string SystemName => $"{NamespaceGroup}.{Name}";
 
     public static bool HasServices => !string.IsNullOrWhiteSpace(PluginFields);
 
@@ -127,6 +127,28 @@ public static class PluginSettings
         }
     }
 
+    private static string NamespaceGroup
+    {
+        get
+        {
+            if (PType == PluginType.Misc && ContainsWidget)
+                return "Widgets";
+
+            return PType switch
+            {
+                PluginType.Misc => "Misc",
+                PluginType.Payment => "Payments",
+                PluginType.DiscountRule => "DiscountRule",
+                PluginType.ShippingRateComputationMethod => "Shipping",
+                PluginType.PickupProvider => "Pickup",
+                PluginType.TaxProvider => "Tax",
+                PluginType.ExternalAuthenticationMethod => "ExternalAuthenticationMethod",
+                PluginType.MultiFactorAuthentication => "MultiFactorAuthentication",
+                _ => string.Empty
+            };
+        }
+    }
+
     public static string Group
     {
         get
@@ -138,7 +160,7 @@ public static class PluginSettings
             {
                 PluginType.Misc => "Misc",
                 PluginType.Payment => "Payments",
-                PluginType.DiscountRule => "DiscountRules",
+                PluginType.DiscountRule => "Discount Requirement",
                 PluginType.ShippingRateComputationMethod => "Shipping",
                 PluginType.PickupProvider => "Pickup",
                 PluginType.TaxProvider => "Tax",

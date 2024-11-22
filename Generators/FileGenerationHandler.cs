@@ -26,9 +26,17 @@ public static class FileGenerationHandler
 
         await new Generate("Infrastructure", "RouteProvider").BuildGenericFileAsync();
 
-        await new Generate("Controllers", "TController").BuildGenericFileAsync();
+        if (PluginSettings.PType == PluginType.DiscountRule)
+        {
+            await new Generate("Controllers", "TDiscountController").BuildGenericFileAsync();
+            await new Generate("Models", "RequirementModel").BuildGenericFileAsync();
+        }
+        else
+        {
+            await new Generate("Controllers", "TController").BuildGenericFileAsync();
+            await new Generate("Models", "ConfigurationModel").BuildGenericFileAsync();
+        }
 
-        await new Generate("Models", "ConfigurationModel").BuildGenericFileAsync();
 
         await new Generate("Views", "_ViewImports").BuildGenericFileAsync(".cshtml");
 

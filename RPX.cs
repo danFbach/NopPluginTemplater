@@ -54,6 +54,7 @@ public static class RPX
     private static async Task<string> PluginImplementation(string key, string contents, string _)
     {
         var implementation = await File.ReadAllTextAsync($"./Templates/PluginImplementations/{PluginSettings.Interface}.txt");
+        implementation = await BulkReplaceAsync(implementation);
         return contents.Replace(key, implementation);
     }
 
